@@ -1,8 +1,8 @@
 package com.raywenderlich.milioner
 
+import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.widget.Toast
 import com.raywenderlich.milioner.databinding.ActivityMainBinding
 
@@ -18,15 +18,19 @@ class MainActivity : AppCompatActivity() {
         setContentView(view)
 
         val round = 0
+        val price = 0
 
-        nextLevel(round)
+        nextLevel(round, price)
     }
 
-    private fun nextLevel(round: Int) {
+    @SuppressLint("SetTextI18n")
+    private fun nextLevel(round: Int, price: Int) {
         var thisRound = round
+        var thisPrice = price
 
         binding.questionNumberTextView.text = "Question ${thisRound + 1}"
         binding.questionTextView.text = questions[thisRound].question
+        binding.priceTextView.text = "Current reward: $thisPrice $"
 
         val answers = arrayListOf(questions[thisRound].rightAnswer,
             questions[thisRound].wrong1,
@@ -48,16 +52,19 @@ class MainActivity : AppCompatActivity() {
 
         fun checkAnswer(answer: String) {
             if (answer == questions[thisRound].rightAnswer) {
-                Toast.makeText(this, "Correct answer!", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "CORRECT!", Toast.LENGTH_SHORT).show()
+                thisPrice += questions[thisRound].price
                 thisRound += 1
                 if (thisRound < 15) {
-                    Log.d("Round", thisRound.toString())
-                    Log.d("Proba", "Stiglo je do ovoga")
-                    nextLevel(thisRound)
+                    nextLevel(thisRound, thisPrice)
+                } else {
+                    Toast.makeText(this, "YOU WON! CONGRATULATIONS!", Toast.LENGTH_SHORT).show()
+                    nextLevel(0, 0)
                 }
             } else {
-                Toast.makeText(this, "Wrong answer!", Toast.LENGTH_SHORT).show()
-                nextLevel(0)
+                Toast.makeText(this, "Wrong answer! Better luck next time!", Toast.LENGTH_SHORT)
+                    .show()
+                nextLevel(0, 0)
             }
         }
 
