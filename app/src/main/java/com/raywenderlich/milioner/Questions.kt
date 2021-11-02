@@ -6,7 +6,7 @@ data class Question(
     val wrong1: String,
     val wrong2: String,
     val wrong3: String,
-    val price: Int,
+    val price: Int
 )
 
 val questions: ArrayList<Question> = arrayListOf(
