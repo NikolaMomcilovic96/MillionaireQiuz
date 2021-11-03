@@ -21,7 +21,7 @@
         android:id="@+id/questionNumberTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="150dp"
+        android:layout_marginTop="100dp"
         android:text="Question number"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -49,7 +49,7 @@
         android:layout_marginLeft="10dp"
         android:layout_marginTop="70dp"
         android:layout_marginRight="10dp"
-        android:background="@color/yellow"
+        android:background="@color/orange"
         android:gravity="center"
         android:lines="2"
         android:maxLines="2"
@@ -68,7 +68,7 @@
         android:layout_marginLeft="10dp"
         android:layout_marginTop="70dp"
         android:layout_marginRight="10dp"
-        android:background="@color/yellow"
+        android:background="@color/orange"
         android:gravity="center"
         android:lines="2"
         android:maxLines="2"
@@ -87,7 +87,7 @@
         android:layout_marginLeft="10dp"
         android:layout_marginTop="50dp"
         android:layout_marginRight="10dp"
-        android:background="@color/yellow"
+        android:background="@color/orange"
         android:gravity="center"
         android:lines="2"
         android:maxLines="2"
@@ -106,7 +106,7 @@
         android:layout_marginLeft="10dp"
         android:layout_marginTop="50dp"
         android:layout_marginRight="10dp"
-        android:background="@color/yellow"
+        android:background="@color/orange"
         android:gravity="center"
         android:lines="2"
         android:maxLines="2"
@@ -134,4 +134,40 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewC" />
+
+    <Button
+        android:id="@+id/halfHalfButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:background="@color/yellow"
+        android:text="50:50"
+        android:textColor="#000000"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/priceTextView" />
+
+    <Button
+        android:id="@+id/friendButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/yellow"
+        android:text="Friend"
+        android:textColor="#000000"
+        app:layout_constraintEnd_toStartOf="@+id/halfHalfButton"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/halfHalfButton"
+        tools:ignore="TextContrastCheck" />
+
+    <Button
+        android:id="@+id/audienceButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/yellow"
+        android:text="Audience"
+        android:textColor="#000000"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/halfHalfButton"
+        app:layout_constraintTop_toTopOf="@+id/halfHalfButton"
+        tools:ignore="TextContrastCheck" />
 </androidx.constraintlayout.widget.ConstraintLayout>
