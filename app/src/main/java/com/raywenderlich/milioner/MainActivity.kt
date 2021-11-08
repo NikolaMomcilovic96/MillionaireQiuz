@@ -1,6 +1,5 @@
 package com.raywenderlich.milioner
 
-import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
@@ -26,7 +25,6 @@ class MainActivity : AppCompatActivity() {
         nextLevel(round, price, fiftyFifty, audience, friend)
     }
 
-    @SuppressLint("SetTextI18n")
     private fun nextLevel(
         round: Int,
         price: Int,
@@ -39,10 +37,12 @@ class MainActivity : AppCompatActivity() {
         var thisFiftyFifty = fiftyFifty
         var thisAudience = audience
         var thisFriend = friend
+        val question = "Question ${thisRound + 1}"
+        val currentReward = "Current reward: $thisPrice $"
 
-        binding.questionNumberTextView.text = "Question ${thisRound + 1}"
+        binding.questionNumberTextView.text = question
         binding.questionTextView.text = questions[thisRound].question
-        binding.priceTextView.text = "Current reward: $thisPrice $"
+        binding.priceTextView.text = currentReward
 
         if (fiftyFifty) {
             binding.halfHalfButton.isEnabled = true
@@ -54,25 +54,54 @@ class MainActivity : AppCompatActivity() {
             binding.friendButton.isEnabled = true
         }
 
-        val answers = arrayListOf(questions[thisRound].rightAnswer,
+        val answers = arrayListOf(
+            questions[thisRound].rightAnswer,
             questions[thisRound].wrong1,
             questions[thisRound].wrong2,
-            questions[thisRound].wrong3)
+            questions[thisRound].wrong3
+        )
 
         val answer1 = answers.random()
         binding.textViewA.text = answer1
+        binding.textViewA.setBackgroundResource(R.color.orange)
         answers.remove(answer1)
         val answer2 = answers.random()
         binding.textViewB.text = answer2
+        binding.textViewB.setBackgroundResource(R.color.orange)
         answers.remove(answer2)
         val answer3 = answers.random()
         binding.textViewC.text = answer3
+        binding.textViewC.setBackgroundResource(R.color.orange)
         answers.remove(answer3)
         val answer4 = answers.random()
         binding.textViewD.text = answer4
+        binding.textViewD.setBackgroundResource(R.color.orange)
         answers.remove(answer4)
 
+
         fun fiftyFiftyHelp() {
+            val wrongAnswers = arrayListOf(
+                questions[thisRound].wrong1,
+                questions[thisRound].wrong2,
+                questions[thisRound].wrong3
+            )
+            val wrong1 = wrongAnswers.random()
+            wrongAnswers.remove(wrong1)
+            val wrong2 = wrongAnswers.random()
+
+            if (answer1 == wrong1 || answer1 == wrong2) {
+                binding.textViewA.setBackgroundResource(R.color.grey)
+            }
+            if (answer2 == wrong1 || answer2 == wrong2) {
+                binding.textViewB.setBackgroundResource(R.color.grey)
+            }
+            if (answer3 == wrong1 || answer3 == wrong2) {
+                binding.textViewC.setBackgroundResource(R.color.grey)
+            }
+            if (answer4 == wrong1 || answer4 == wrong2) {
+                binding.textViewD.setBackgroundResource(R.color.grey)
+            }
+
             binding.halfHalfButton.isEnabled = false
             thisFiftyFifty = false
         }
